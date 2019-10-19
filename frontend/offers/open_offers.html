@@ -1,130 +1,142 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Loan Mower</title>
-  </head>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <style>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <title>Loan Mower</title>
+</head>
 
-    a:active,
-    a:hover,
-    a:link{
-      text-decoration: none;
-    }
-    .container a{
-      margin:0 auto;
-    }
-    .row,
-    .card{
-      margin:0 auto;
-    }
-    .btn-group input{
-      cursor: pointer;
-    }
+<style>
+  a:active,
+  a:hover,
+  a:link {
+    text-decoration: none;
+  }
 
-   .active a{
-      background-color: #42494f
-    }
+  .container a {
+    margin: 0 auto;
+  }
 
-    .col-sm-4 a{
-      width: 90%;
-      float: none;
-    }
-    .fa-home{
-      position: absolute;
-      left: 20px;
-      color: #000;
-      font-size: 30px;
-    }
-  </style>
+  .row,
+  .card {
+    margin: 0 auto;
+  }
 
-  <body>
+  .btn-group input {
+    cursor: pointer;
+  }
 
-    <div class="container">
+  .active a {
+    background-color: #42494f
+  }
 
-        <div>
+  .col-sm-4 a {
+    width: 90%;
+    float: none;
+  }
 
-          <div class="header" style="position: relative;">
-            <div class="float-left w-6 mb-2 mt-2"> 
-              <a class="d-table " href="/index.html">
-                <i class="fa fa-home"></i>
-              </a>
-            </div>
-          </div>
-          <h4 class="float-none text-center w-100 mt-4 mb-4">Open Offers</h4>
+  .fa-home {
+    position: absolute;
+    left: 20px;
+    color: #000;
+    font-size: 30px;
+  }
+</style>
 
-          <div class="row w-100 mt-2">
+<body>
 
-            <div class="active col-sm-4 p-0 mb-2">  
-              <a class="w-100 d-table text-white btn btn-secondary border">
-                Open Offers
-              </a>
-            </div>
-            <div class="col-sm-4 p-0 mb-2">  
-              <a href="/offers/pending_offers.html" class="w-100 d-table text-white btn btn-secondary border">
-                Pending Offers
-              </a>
-            </div>
-            <div class="col-sm-4 p-0 mb-2">
-              <a href="/offers/expired_offers.html" class="w-100 d-table text-white btn btn-secondary border">
-                Expired offers
-              </a>
-            </div>
+  <div class="container">
 
-          </div>
+    <div>
 
+      <div class="header" style="position: relative;">
+        <div class="float-left w-6 mb-2 mt-2">
+          <a class="d-table " href="/index.html">
+            <i class="fa fa-home"></i>
+          </a>
+        </div>
+      </div>
+      <h4 class="float-none text-center w-100 mt-4 mb-4">Open Offers</h4>
 
+      <div class="row w-100 mt-2">
 
-          <div id="open_offers" class="card mt-5 float-none width-12">
-            <div class="card-header text-center">
-              Open Offers List
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <a class="text-dark" href="">
-                    Loan: ETH 1000 Collateral: 0x50
-                  </a>
-                </li>
-                <li class="list-group-item">
-                  <a class="text-dark" href="">
-                  Loan: ETH 1000 Collateral: 0x50
-                  </a>
-                </li>
-                <li class="list-group-item">
-                  <a class="text-dark" href="">Loan: ETH 1000 Collateral: 0x50</a>
-                </li>
-                <li class="list-group-item">
-                  <a class="text-dark" href="">
-                   Loan: ETH 1000 Collateral: 0x50
-                  </a>
-                </li>
-                <li class="list-group-item">
-                  <a class="text-dark" href="">
-                   Loan: ETH 1000 Collateral: 0x50
-                  </a>
-                </li>
-            </ul>
-          </div>
-
+        <div class="active col-sm-4 p-0 mb-2">
+          <a class="w-100 d-table text-white btn btn-secondary border">
+            Open Offers
+          </a>
+        </div>
+        <div class="col-sm-4 p-0 mb-2">
+          <a href="/offers/pending_offers.html" class="w-100 d-table text-white btn btn-secondary border">
+            Pending Offers
+          </a>
+        </div>
+        <div class="col-sm-4 p-0 mb-2">
+          <a href="/offers/expired_offers.html" class="w-100 d-table text-white btn btn-secondary border">
+            Expired offers
+          </a>
         </div>
 
+      </div>
+
+
+
+      <div id="open_offers" class="card mt-5 float-none width-12">
+        <div class="card-header text-center">
+          Open Offers List
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a class="text-dark" href="">
+              Loan: ETH 1000 Collateral: 0x50
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a class="text-dark" href="">
+              Loan: ETH 1000 Collateral: 0x50
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a class="text-dark" href="">Loan: ETH 1000 Collateral: 0x50</a>
+          </li>
+          <li class="list-group-item">
+            <a class="text-dark" href="">
+              Loan: ETH 1000 Collateral: 0x50
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a class="text-dark" href="">
+              Loan: ETH 1000 Collateral: 0x50
+            </a>
+          </li>
+        </ul>
+      </div>
 
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script src="/src/index.js"></script>
-  </body>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script src="/src/index.js"></script>
+</body>
+
 </html>
