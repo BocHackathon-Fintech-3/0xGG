@@ -1,63 +1,7 @@
-  body{
-    overflow-y: scroll;
-  }
+table>tbody>tr:first-of-type {
+  border-top-style: hidden;
+}
 
-  a:active,
-  a:hover,
-  a:link {
-    text-decoration: none;
-  }
-  .container{
-    margin-bottom: 60px
-  }
-  .container a {
-    margin: 0 auto;
-  }
-
-  .row,
-  .card {
-    margin: 0 auto;
-  }
-
-  .btn-group input {
-    cursor: pointer;
-  }
-
-
-  .col-sm-4 a {
-    float: none;
-  }
-
-  .fa-home {
-    position: absolute;
-    left: 20px;
-    top: -1px;
-    color: #000;
-    font-size: 30px;
-  }
-
-  .error {
-    border-color: #f00
-  }
-
-  .input-group>.custom-select:not(:last-child),
-  .input-group>.form-control:not(:last-child) {
-    border-top-right-radius: .25rem;
-    border-bottom-right-radius: .25rem;
-  }
-
-  .input-group {
-    width: 100%;
-    display: table;
-  }
-  .form-control.width_49{
-    width: 40%;
-  }
-  #create_loan .input-group .input-group-prepend,
-  #create_loan .input-group select {
-    width: 49%;
-  }
-
-  .list-group-item:hover {
-    background-color: #f0f0f0
-  }
+table.rounded {
+  border-radius: 1rem !important;
+}
