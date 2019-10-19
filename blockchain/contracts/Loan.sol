@@ -8,15 +8,18 @@ contract Loan {
         address owner;
         uint256 interest;
     }
-    event NewOffer(address owner);
+    event NewOffer(address lender, uint256 interest);
+    event OfferAgreed(address lender, uint256 interest);
+    event Success();
+    event Failure();
 
-    enum States {Init, Offer, Pending, Success, Failed}
+    enum States {Init, Offer, Pending, Success, Failure}
 
     address public owner;
     FundHandler public fundHandler;
 
-    Offer offer;
-    States state;
+    Offer public offer;
+    States public state;
 
     uint256 principal_units;
     string principal_symbol;
@@ -45,15 +48,47 @@ contract Loan {
 
     function matchLoan(uint256 _interest) public returns (bool) {
         require(state == States.Init || state == States.Offer, "Invalid state");
-        if (offer.owner == address(0x00) || offer.interest < _interest) {
+        if (offer.owner == address(0x00) || offer.interest > _interest) {
+            if (offer.owner != address(0x00)) {
+                fundHandler.transfer(address(this), address(this), offer.owner, principal_units, principal_symbol);
+            }
             offer.owner = msg.sender;
             offer.interest = _interest;
         }
-        emit NewOffer(msg.sender);
+        fundHandler.transfer(address(this), msg.sender, address(this), principal_units, principal_symbol);
+        state = States.Offer;
+        emit NewOffer(offer.owner, offer.interest);
+        return true;
     }
 
     function agree() public returns (bool) {
+        require(owner == msg.sender, "Only owner can accept an offer");
+        require(state == States.Offer, "Invalid state");
+        fundHandler.transfer(address(this), address(this), msg.sender, principal_units, principal_symbol);
+        state = States.Pending;
+        emit OfferAgreed(offer.owner, offer.interest);
+        return true;
+    }
 
+    function repay() public returns (bool) {
+        // anyone can repay for owner
+        require(state == States.Pending, "Invalid state");
+        require(now <= deadline, "Deadline is over");
+        fundHandler.transfer(address(this), msg.sender, offer.owner, principal_units+offer.interest, principal_symbol);
+        fundHandler.transfer(address(this), address(this), owner, collateral_units, collateral_symbol);
+        state = States.Success;
+        emit Success();
+        return true;
+    }
+
+    function collectCollateral() public returns (bool) {
+        require(offer.owner == msg.sender, "Only offer owner can accept an offer");
+        require(state == States.Pending, "Invalid state");
+        require(now > deadline, "Deadline is not over yet");
+        fundHandler.transfer(address(this), address(this), offer.owner, collateral_units, collateral_symbol);
+        state = States.Failure;
+        emit Failure();
+        return true;
     }
 
 }
