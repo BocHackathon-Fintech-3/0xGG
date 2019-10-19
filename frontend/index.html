@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Loan Mower</title>
+  </head>
+
+  <style>
+
+    a:active,
+    a:hover,
+    a:link{
+      text-decoration: none;
+    }
+    .container a{
+      margin:0 auto;
+    }
+    .card{
+      margin:0 auto;
+    }
+    .btn-group input{
+      cursor: pointer;
+    }
+
+    .col-sm-4{
+      padding:0;
+    }
+
+    .col-sm-4 a{
+      width: 90%;
+      float: none;
+    }
+
+  </style>
+
+  <body>
+
+    <div class="container">
+
+        <div>
+
+          <div class="row mt-2">
+
+            <div class="col-sm-4 p-0 mb-2">  
+              <a href="/offers/open_offers.html" class="d-table text-white btn btn-secondary border">
+                Open Offers
+              </a>
+            </div>
+            <div class="col-sm-4 p-0 mb-2">  
+              <a href="/offers/pending_offers.html" class="d-table text-white btn btn-secondary border">
+                Pending Offers
+              </a>
+            </div>
+            <div class="col-sm-4 p-0 mb-2">
+              <a href="/offers/expired_offers.html" class="d-table text-white btn btn-secondary border">
+                Expired offers
+              </a>
+            </div>
+
+          </div>
+
+          <h1 class="m-2 mt-5 text-center">Welcome to Loan Mower</h1>
+
+          <a class="text-white btn btn-dark d-table mt-5" href="/offers/create_offers.html">Create Offer</a>
+
+
+          <h5 class="m-2 mt-5 text-center">Current Open Offers</h5>
+
+          <div id="my_open" class="card mt-5 float-none width-12">
+            <div class="card-header text-center">
+              Open Offers List
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <a class="text-dark" href="">
+                  Loan: ETH 1000 Collateral: 0x50<br/>Deadline: 2020-01-02 18:30 Remaining Amount:30
+                </a>
+              </li>
+            </ul>
+          </div> 
+
+        </div>
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
