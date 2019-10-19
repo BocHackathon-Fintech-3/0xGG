@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <title>Loan Mower</title>
   </head>
 
@@ -21,6 +22,10 @@
     .container a{
       margin:0 auto;
     }
+    .submit_btn{
+      margin:0 auto;
+      margin-top: 30px
+    }
     .row,
     .card{
       margin:0 auto;
@@ -28,12 +33,16 @@
     .btn-group input{
       cursor: pointer;
     }
-
+    .active{
+      background-color: #42494f
+    }
  
     .col-sm-4 a{
       width: 90%;
       float: none;
     }
+
+
 
   </style>
 
@@ -43,13 +52,19 @@
 
         <div>
 
-          <div class="w-100 mt-1 mb-3"> 
-
-            <a class="text-white btn btn-dark d-table w-100 mt-5" href="/../index.html">Home</a>
-
+          <div class="header" style="position: relative;">
+            <div class="float-left w-6 mb-2 mt-2"> 
+              <a class="d-table " href="/index.html">
+                <i class="fa fa-home"></i>
+              </a>
+            </div>
           </div>
 
+          <h4 class="float-none text-center w-100 mt-4 mb-4">Create Offer</h4>
           <div class="row w-100 mt-2">
+
+
+
 
             <div class="col-sm-4 p-0 mb-2">  
               <a href="/offers/open_offers.html" class="w-100 d-table text-white btn btn-secondary border">
@@ -72,31 +87,36 @@
 
 
 
-          <form id="create_loan">
-            <div class="form-group">
-              <label for="currency">Currency:</label>
-              <input type="text" class="form-control" id="currency" name="currency" placeholder="Currency">
+          <form id="create_loan" class="mt-5">
+
+
+            <div class="input-group mb-3">
+              <select class="custom-select" id="principal">
+                <option disabled>Principal</option>
+                <option value="1">EUR</option>
+              </select>
+              <div class="input-group-prepend float-right">
+                <input type="text" class="form-control" id="principal_amount" placeholder="Amount"/>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="loan_amount">Amount:</label>
-              <input type="text" class="form-control" id="loan_amount" name="loan_amount" placeholder="Amount">
-            </div>
-            <div class="form-group">
-              <label for="collateral">Collateral:</label>
-              <input type="text" class="form-control" id="collateral" name="collateral" placeholder="Collateral">
-            </div>
-            <div class="form-group">
-              <label for="collateral_amount">Amount:</label>
-              <input type="text" class="form-control" id="collateral_amount" name="collateral_amount" placeholder="Amount">
+
+
+            <div class="input-group mb-3">
+              <select class="custom-select" id="collateral">
+                <option disabled>Collateral</option>
+                <option value="1">EUR</option>
+              </select>
+              <div class="input-group-prepend float-right">
+                <input type="text" class="form-control" id="collateral_amount" placeholder="Collateral Amount"/>
+              </div>
             </div>
             <div class="form-group">
               <label for="deadline">Deadline:</label>
-              <input type="date" class="form-control" id="deadline" name="deadline" placeholder="Amount">
+              <input type="date" class="form-control datepicker" id="deadline" name="deadline"/>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button onclick=javascript:submitCreateForm(); type="submit" class="submit_btn btn d-table bg-dark text-white">Submit</button>
           </form>
 
-          
         </div>
 
 
@@ -109,5 +129,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script src="/src/index.js"></script>
+
   </body>
 </html>
+

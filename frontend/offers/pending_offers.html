@@ -7,7 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <title>Loan Mower</title>
   </head>
 
@@ -30,12 +31,19 @@
       cursor: pointer;
     }
 
- 
+   .active a{
+      background-color: #42494f
+    }
 
     .col-sm-4 a{
       float: none;
     }
-
+    .fa-home{
+      position: absolute;
+      left: 20px;
+      color: #000;
+      font-size: 30px;
+    }
   </style>
 
   <body>
@@ -43,12 +51,14 @@
     <div class="container">
 
         <div>
-
-          <div class="w-100 mt-1 mb-3"> 
-
-            <a class="text-white btn btn-dark d-table mt-5 w-100 " href="/../index.html">Home</a>
-
+          <div class="header" style="position: relative;">
+            <div class="float-left w-6 mb-2 mt-2"> 
+              <a class="d-table " href="/index.html">
+                <i class="fa fa-home"></i>
+              </a>
+            </div>
           </div>
+          <h4 class="float-none text-center w-100 mt-4 mb-4">Pending Offer</h4>
 
           <div class="row w-100 mt-2">
 
@@ -57,8 +67,8 @@
                 Open Offers
               </a>
             </div>
-            <div class="col-sm-4 p-0 mb-2">  
-              <a href="/offers/pending_offers.html" class="w-100 d-table text-white btn btn-secondary border">
+            <div class="active col-sm-4 p-0 mb-2">  
+              <a class="w-100 d-table text-white btn btn-secondary border">
                 Pending Offers
               </a>
             </div>
@@ -78,6 +88,11 @@
               My Pending Offers List
             </div>
             <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <a class="text-dark" href="">
+                  Loan: ETH 1000 Collateral: 0x50<br/>Deadline: 2020-01-02 Remaining Amount: 30
+                </a>
+              </li>
               <li class="list-group-item">
                 <a class="text-dark" href="">
                   Loan: ETH 1000 Collateral: 0x50<br/>Deadline: 2020-01-02 Remaining Amount: 30

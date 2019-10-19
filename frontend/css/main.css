@@ -1,0 +1,24 @@
+.fa-home{
+  position: absolute;
+  left: 20px;
+  top:-1px;
+  color: #000;
+  font-size: 30px;
+}
+
+.error{
+	border-color: #f00
+}
+
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child){
+	border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+.input-group{
+	width: 100%;
+	display: table;
+}
+#create_loan .input-group .input-group-prepend,
+#create_loan .input-group select{
+	width: 49%;
+}
