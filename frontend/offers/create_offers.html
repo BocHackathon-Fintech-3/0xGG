@@ -58,32 +58,34 @@
       <form id="create_loan" class="mt-5">
 
 
-        <div class="input-group mb-3">
+        <div class="input-group">
           <select class="custom-select" id="principal">
-            <option disabled>Principal</option>
-            <option value="1">EUR</option>
+            <option value="" selected disabled>Principal</option>
+            <option value="WEUR">EUR</option>
+            <option value="WXAG">XAG</option>
           </select>
-          <div class="input-group-prepend float-right">
-            <input type="text" class="form-control" id="principal_amount" placeholder="Amount" />
+          <div class="input-group-prepend">
+            <input type="text" class="form-control" id="principal_amount" placeholder="Amount">
           </div>
         </div>
 
 
         <div class="input-group mb-3">
           <select class="custom-select" id="collateral">
-            <option disabled>Collateral</option>
-            <option value="1">EUR</option>
+            <option value="" selected disabled>Collateral</option>
+            <option value="WETH">EUR</option>
+            <option value="WXAG">XAG</option>
           </select>
           <div class="input-group-prepend float-right">
             <input type="text" class="form-control" id="collateral_amount" placeholder="Collateral Amount" />
           </div>
         </div>
+
         <div class="form-group">
           <label for="deadline">Deadline:</label>
           <input type="datetime-local" class="form-control" id="deadline" name="deadline" />
         </div>
-        <button onclick=javascript:submitCreateForm(); type="submit"
-          class="submit_btn btn d-table bg-dark text-white">Submit</button>
+        <button type="button" class="btn btn-primary btn-block">Submit</button>
       </form>
 
     </div>
