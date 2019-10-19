@@ -21,8 +21,6 @@
     .container a{
       margin:0 auto;
     }
-    
-    
     .row,
     .card{
       margin:0 auto;
@@ -31,8 +29,9 @@
       cursor: pointer;
     }
 
-
+ 
     .col-sm-4 a{
+      width: 90%;
       float: none;
     }
 
@@ -43,6 +42,12 @@
     <div class="container">
 
         <div>
+
+          <div class="w-100 mt-1 mb-3"> 
+
+            <a class="text-white btn btn-dark d-table w-100 mt-5" href="/../index.html">Home</a>
+
+          </div>
 
           <div class="row w-100 mt-2">
 
@@ -64,26 +69,34 @@
 
           </div>
 
-          <h1 class="m-2 mt-5 text-center">Welcome to Loan Mower</h1>
-
-          <a class="text-white btn btn-dark d-table mt-5" href="/offers/create_offers.html">Create Offer</a>
 
 
-          <h5 class="m-2 mt-5 text-center">Current Open Offers</h5>
 
-          <div id="my_open" class="card mt-5 float-none width-12">
-            <div class="card-header text-center">
-              Open Offers List
+          <form id="create_loan">
+            <div class="form-group">
+              <label for="currency">Currency:</label>
+              <input type="text" class="form-control" id="currency" name="currency" placeholder="Currency">
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <a class="text-dark" href="">
-                  Loan: ETH 1000 Collateral: 0x50<br/>Deadline: 2020-01-02 18:30 Remaining Amount:30
-                </a>
-              </li>
-            </ul>
-          </div> 
+            <div class="form-group">
+              <label for="loan_amount">Amount:</label>
+              <input type="text" class="form-control" id="loan_amount" name="loan_amount" placeholder="Amount">
+            </div>
+            <div class="form-group">
+              <label for="collateral">Collateral:</label>
+              <input type="text" class="form-control" id="collateral" name="collateral" placeholder="Collateral">
+            </div>
+            <div class="form-group">
+              <label for="collateral_amount">Amount:</label>
+              <input type="text" class="form-control" id="collateral_amount" name="collateral_amount" placeholder="Amount">
+            </div>
+            <div class="form-group">
+              <label for="deadline">Deadline:</label>
+              <input type="date" class="form-control" id="deadline" name="deadline" placeholder="Amount">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
 
+          
         </div>
 
 

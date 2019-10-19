@@ -21,8 +21,6 @@
     .container a{
       margin:0 auto;
     }
-    
-    
     .row,
     .card{
       margin:0 auto;
@@ -33,6 +31,7 @@
 
 
     .col-sm-4 a{
+      width: 90%;
       float: none;
     }
 
@@ -43,6 +42,12 @@
     <div class="container">
 
         <div>
+
+          <div class="w-100 mt-1 mb-3"> 
+
+            <a class="text-white btn btn-dark d-table w-100 mt-5" href="/../index.html">Home</a>
+
+          </div>
 
           <div class="row w-100 mt-2">
 
@@ -64,25 +69,25 @@
 
           </div>
 
-          <h1 class="m-2 mt-5 text-center">Welcome to Loan Mower</h1>
 
-          <a class="text-white btn btn-dark d-table mt-5" href="/offers/create_offers.html">Create Offer</a>
-
-
-          <h5 class="m-2 mt-5 text-center">Current Open Offers</h5>
-
-          <div id="my_open" class="card mt-5 float-none width-12">
+          <div id="my_completed" class="card mt-5 mb-5 float-none width-12">
             <div class="card-header text-center">
-              Open Offers List
+              My Expired Offers List
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <a class="text-dark" href="">
-                  Loan: ETH 1000 Collateral: 0x50<br/>Deadline: 2020-01-02 18:30 Remaining Amount:30
+                  Loan: ETH 1000 Collateral: 0x50<br/>Status: Completed
+                </a>
+              </li>
+              <li class="list-group-item">
+                <a class="text-dark" href="">
+                  Loan: ETH 1000 Collateral: 0x50<br/>Status: Failed Pending: Withdrawal
                 </a>
               </li>
             </ul>
-          </div> 
+          </div>
+
 
         </div>
 
