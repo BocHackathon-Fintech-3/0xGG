@@ -21,11 +21,11 @@ contract Loan {
     Offer public offer;
     States public state;
 
-    uint256 principal_units;
-    bytes32 principal_symbol;
-    uint256 collateral_units;
-    bytes32 collateral_symbol;
-    uint64 deadline;
+    uint256 public principal_units;
+    bytes32 public principal_symbol;
+    uint256 public collateral_units;
+    bytes32 public collateral_symbol;
+    uint64 public deadline;
 
     // initialize loan
     constructor (
