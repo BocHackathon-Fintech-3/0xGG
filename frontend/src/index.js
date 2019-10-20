@@ -45,3 +45,17 @@ function submitCreateForm() {
     return;
   }
 }
+
+function createList(offer_id,status,principal,principal_amount,collateral,collateral_amount,deadline,interest){
+
+  var li_list = "<li class='mt-3 mx-2'><a href='#{0}'><table class='table table-striped table-sm table-secondary rounded shadow-sm'><body><tr><td>Status:</td> <td class='text-right'>{1}</td></tr> <tr><td>Principal:</td><td class='text-right'>{2} {3}</td></tr><tr><td>Collateral:</td><td class='text-right'>{4} {5}</td></tr><tr><td>Deadline:</td><td class='text-right'>{6}</td></tr><tr><td>Interest:</td><td class='text-right'>{7}</td></tr></tbody></table></a></li>";
+  
+  function{
+    offer_id,status,principal,
+    principal_amount,collateral,
+    collateral_amount,deadline,interest
+  }
+
+  return li_list;
+
+}
