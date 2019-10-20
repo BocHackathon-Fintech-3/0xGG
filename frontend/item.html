@@ -83,30 +83,33 @@
 
       <div class="offer_item border mt-5 mb-3" id="open_offer">
         <h5 class="text-center mt-4 mb-3"  style="width: 95%; margin:0 auto;">Offer Loan</h5>
-        
-        <div class="input-group mb-3" style="width: 95%; margin:0 auto;">
-          <div class="input-group-prepend form-control width_49 float-left">Interest</div>
-          <div class="input-group-prepend width_49 float-right">
-            <input type="text" class="form-control" id="collateral_amount" placeholder="Collateral Amount" />
+        <form id="open_offer_frm">
+          <div class="input-group mb-3" style="width: 95%; margin:0 auto;">
+            <div class="input-group-prepend form-control width_49 float-left">Interest</div>
+            <div class="input-group-prepend width_49 float-right">
+              <input type="text" class="form-control" id="collateral_amount" placeholder="Collateral Amount" />
+            </div>
           </div>
-        </div>
 
-        <button onclick=javascript:makeOffer(); type="submit"
-            class="mb-4 btn btn-block d-table bg-dark text-white" style="width: 95%; margin:0 auto;">Make Offer
-        </button>
+          <button onclick=javascript:makeOffer(); type="submit"
+              class="mb-4 btn btn-block d-table bg-dark text-white" style="width: 95%; margin:0 auto;">Make Offer
+          </button>
+        </form>
       </div>
 
 
       <div class="offer_item border mt-5 mb-3" id="open_with_match">
         <h5 class="text-center mt-4 mb-3" style="width: 95%; margin:0 auto;">Offer With Matching</h5>
+        <form id="open_match_frm">
         
-        <div class="input-group mb-3" style="width: 95%; margin:0 auto;">
-          <div class="input-group-prepend form-control w-100">Lower Interest: EUR 55</div>
-        </div>
+          <div class="input-group mb-3" style="width: 95%; margin:0 auto;">
+            <div class="input-group-prepend form-control w-100">Lower Interest: EUR 55</div>
+          </div>
 
-        <button onclick=javascript:acceptOffer(); type="submit"
-            class="btn mb-4 btn-block d-table bg-dark text-white"  style="width: 95%; margin:0 auto;">Accept Offer
-        </button>
+          <button onclick=javascript:acceptOffer(); type="submit"
+              class="btn mb-4 btn-block d-table bg-dark text-white"  style="width: 95%; margin:0 auto;">Accept Offer
+          </button>
+        </form>
       </div>
 
 
