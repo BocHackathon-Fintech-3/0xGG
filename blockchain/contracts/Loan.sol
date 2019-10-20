@@ -22,9 +22,9 @@ contract Loan {
     States public state;
 
     uint256 principal_units;
-    string principal_symbol;
+    bytes32 principal_symbol;
     uint256 collateral_units;
-    string collateral_symbol;
+    bytes32 collateral_symbol;
     uint64 deadline;
 
     // initialize loan
@@ -32,9 +32,9 @@ contract Loan {
             FundHandler _fundHandler,
             address _loaner,
             uint256 _principal_units,
-            string memory _principal_symbol,
+            bytes32 _principal_symbol,
             uint256 _collateral_units,
-            string memory _collateral_symbol,
+            bytes32 _collateral_symbol,
             uint64 _deadline
         ) public {
             state = States.Init;

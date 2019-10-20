@@ -20,9 +20,9 @@ contract LoanFactory {
     // create a new loan contract
     function createLoan(
         uint256 _principal_units,
-        string memory _principal_symbol,
+        bytes32 _principal_symbol,
         uint256 _collateral_units,
-        string memory _collateral_symbol,
+        bytes32 _collateral_symbol,
         uint64 _deadline
     ) public returns (address) {
         Loan newContract = new Loan(
