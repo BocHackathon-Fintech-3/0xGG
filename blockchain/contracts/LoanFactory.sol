@@ -12,11 +12,12 @@ contract LoanFactory {
 
     event ContractInstantiation(address indexed sender, address indexed instantiation);
 
+    // initialize loan factory
     constructor (FundHandler _fundHandler) public  {
-        // constructor
         fundHandler = _fundHandler;
     }
 
+    // create a new loan contract
     function createLoan(
         uint256 _principal_units,
         string memory _principal_symbol,
@@ -24,7 +25,6 @@ contract LoanFactory {
         string memory _collateral_symbol,
         uint64 _deadline
     ) public returns (address) {
-        // require(address(fundHandler) != address(0), "fundHandler is zero!!!");
         Loan newContract = new Loan(
             fundHandler,
             msg.sender,
@@ -36,17 +36,13 @@ contract LoanFactory {
         );
         created[msg.sender].push(address(newContract));
         emit ContractInstantiation(msg.sender, address(newContract));
-        /* newContract.transferOwnership(msg.sender); */
         isLoan[address(newContract)] = true;
         fundHandler.transfer(address(newContract), msg.sender, address(newContract), _collateral_units, _collateral_symbol);
 
         return address(newContract);
     }
 
-    function getCreated(address _address) public view returns (address[] memory) {
-        return created[_address];
-    }
-
+    // check if an address is a loan
     function getIsLoan(address addr) public view returns (bool) {
         return isLoan[addr];
     }

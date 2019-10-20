@@ -27,6 +27,7 @@ contract Loan {
     string collateral_symbol;
     uint64 deadline;
 
+    // initialize loan
     constructor (
             FundHandler _fundHandler,
             address _loaner,
@@ -46,6 +47,7 @@ contract Loan {
             fundHandler = _fundHandler;
     }
 
+    // a match for the loan is made, if its better the current match is updated
     function matchLoan(uint256 _interest) public returns (bool) {
         require(state == States.Init || state == States.Offer, "Invalid state");
         if (offer.owner == address(0x00) || offer.interest > _interest) {
@@ -61,6 +63,7 @@ contract Loan {
         return true;
     }
 
+    // the loaner agrees to a loan
     function agree() public returns (bool) {
         require(owner == msg.sender, "Only owner can accept an offer");
         require(state == States.Offer, "Invalid state");
@@ -70,6 +73,7 @@ contract Loan {
         return true;
     }
 
+    // the loaner repays the lender and receives the collateral back
     function repay() public returns (bool) {
         // anyone can repay for owner
         require(state == States.Pending, "Invalid state");
@@ -81,6 +85,7 @@ contract Loan {
         return true;
     }
 
+    // the lender collects the collateral if the loan failed
     function collectCollateral() public returns (bool) {
         require(offer.owner == msg.sender, "Only offer owner can accept an offer");
         require(state == States.Pending, "Invalid state");

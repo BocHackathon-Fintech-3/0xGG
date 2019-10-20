@@ -3,8 +3,6 @@ const web3 = global.web3
 var FundHandler = artifacts.require("./FundHandler.sol")
 var LoanFactory = artifacts.require("./LoanFactory.sol")
 var Loan = artifacts.require("./Loan.sol")
-// var WEur = artifacts.require("./WEur.sol")
-// var WXag = artifacts.require("./WXag.sol")
 
 contract('Loan', function(accounts) {
 
@@ -42,8 +40,6 @@ contract('Loan', function(accounts) {
     }
 
     before(async function () {
-        //Create contract instances
-        //   loan = await Loan.new({from: governor})
 
         now = (await web3.eth.getBlock('latest')).timestamp
 
@@ -59,37 +55,18 @@ contract('Loan', function(accounts) {
         txhash = await fundHandler.wrap(david, "WEUR", 100, {from: robot});
         txhash = await fundHandler.wrap(eve, "WEUR", 150, {from: robot});
 
-        loan_address = await loanFactory.createLoan.call(
-            100,
-            "WEUR",
-            10,
-            "WXAG",
-            now + 30,
-            {from: alice}    // value: web3.toWei(200)
-        );
-        loan_txhash = await loanFactory.createLoan(
-            100,
-            "WEUR",
-            10,
-            "WXAG",
-            now + 30,
-            {from: alice}    // value: web3.toWei(200)
-        );
-
-        loan = Loan.at(loan_address);
-
         accounts = [
             {
                 name: "Contract",
-                account: loan_address,
+                account: 0x00,
                 weur: 0,
-                wxag: 10
+                wxag: 0
             },
             {
                 name: "Alice",
                 account: alice,
                 weur: 10,
-                wxag: 20-10
+                wxag: 20
             },
             {
                 name: "Bob",
@@ -117,20 +94,38 @@ contract('Loan', function(accounts) {
             }
         ]
 
-    })
+        loan_address = await loanFactory.createLoan.call(
+            100,
+            "WEUR",
+            10,
+            "WXAG",
+            now + 30,
+            {from: alice}
+        );
+        loan_txhash = await loanFactory.createLoan(
+            100,
+            "WEUR",
+            10,
+            "WXAG",
+            now + 30,
+            {from: alice}
+        );
 
-    // it("Governor is the owner of Tender", async function() {
-    //     const ownerAddress = await tender.owner.call({from: governor});
-    //     assert.equal(ownerAddress, governor);
-    // })
+        loan = Loan.at(loan_address);
+
+        accounts[0].account = loan_address; // Contract
+        accounts[0].wxag += 10;             // Contract
+        accounts[1].wxag -= 10;             // Alice
+
+    })
 
     async function checkAssets(users) {
         for (var i = 0; i < users.length; i++) {
             user = users[i];
             weur = await fundHandler.getBalance.call(user.account, "WEUR", {from: robot});
-            assert.equal(weur.toNumber(), user.weur, user.name + " WEUR ");
+            assert.equal(weur.toNumber(), user.weur, user.name + " WEUR");
             wxag = await fundHandler.getBalance.call(user.account, "WXAG", {from: robot});
-            assert.equal(wxag.toNumber(), user.wxag, user.name + " WEUR ");
+            assert.equal(wxag.toNumber(), user.wxag, user.name + " WXAG");
         }
     }
 
@@ -166,16 +161,10 @@ contract('Loan', function(accounts) {
         assert.equal(offer.owner, carol);
         assert.equal(offer.interest, 10);
         
-        // carols and robots balance should change
+        // changes to accounts
         accounts[3].weur -= 100;    // Carol
         accounts[0].weur += 100;    // Contract
-        // checkAssets(accounts);
-
-        weur = await fundHandler.getBalance.call(carol, "WEUR", {from: robot});
-        assert.equal(weur.toNumber(), accounts[3].weur,  "Carol WEUR");
-
-        weur = await fundHandler.getBalance.call(accounts[0].account, "WEUR", {from: robot});
-        assert.equal(weur.toNumber(), 100, "Contract WEUR");
+        await checkAssets(accounts);
 
         // state should be offer
         const state = await loan.state.call({from: alice});
@@ -183,8 +172,8 @@ contract('Loan', function(accounts) {
     })
 
     it("Bob places a better offer than Carol for Alice loan", async function() {
-        const success = await loan.matchLoan.call(5, {from: bob})
-        const txhash = await loan.matchLoan(5, {from: bob})
+        const success = await loan.matchLoan.call(5, {from: bob});
+        const txhash = await loan.matchLoan(5, {from: bob});
         assert.equal(success, true);
         const offer_array = await loan.offer.call({from: alice});
         offer = {
@@ -194,12 +183,10 @@ contract('Loan', function(accounts) {
         assert.equal(offer.owner, bob);
         assert.equal(offer.interest, 5);
         
-        // no changes to accounts
-        // assert(accounts[2].weur, 500)
+        // changes to accounts
         accounts[2].weur -= 100;    // Bob
-        // assert(accounts[2].weur, 400)
         accounts[3].weur += 100;    // Carol
-        // checkAssets(accounts)
+        await checkAssets(accounts);
 
         // state should be offer
         const state = await loan.state.call({from: alice});
@@ -217,13 +204,17 @@ contract('Loan', function(accounts) {
         }
         assert.notEqual(error, undefined, "Error must be thrown");
         
+        // changes to accounts
+        await checkAssets(accounts);
+
+        // state should be offer
         const state = await loan.state.call({from: alice});
         assert.equal(state, States.Offer);
     })
 
     it("Alice agrees to Bobs offer", async function() {
-        const success = await loan.agree.call({from: alice})
-        const txhash = await loan.agree({from: alice})
+        const success = await loan.agree.call({from: alice});
+        const txhash = await loan.agree({from: alice});
         assert.equal(success, true);
         const offer_array = await loan.offer.call({from: alice});
         offer = {
@@ -233,40 +224,102 @@ contract('Loan', function(accounts) {
         assert.equal(offer.owner, bob);
         assert.equal(offer.interest, 5);
         
+        // changes to accounts
+        accounts[0].weur -= 100;    // Contract
+        accounts[1].weur += 100;    // Alice
+        await checkAssets(accounts);
+
+        // state should be pending
         const state = await loan.state.call({from: alice});
         assert.equal(state, States.Pending);
     })
 
     it("Alice pays back on time", async function() {
         txhash = await fundHandler.wrap(alice, "WEUR", 100, {from: robot});
+
         success = await loan.repay.call({from: alice})
         txhash = await loan.repay({from: alice})
         assert.equal(success, true);
-        const offer_array = await loan.offer.call({from: alice});
-        offer = {
-            owner: offer_array[0],
-            interest: offer_array[1]
-        }
-        assert.equal(offer.owner, bob);
-        assert.equal(offer.interest, 5);
         
+        // changes to accounts
+        accounts[1].weur += 100;    // Alice
+        accounts[1].weur -= 105;    // Alice
+        accounts[2].weur += 105;    // Bob
+        accounts[0].wxag -= 10;     // Contract
+        accounts[1].wxag += 10;     // Contract
+        await checkAssets(accounts);
+        
+        // state should be success
         const state = await loan.state.call({from: alice});
         assert.equal(state, States.Success);
     })
 
-    // it("Alice approves WEUR to Bob", async function () {
-    //     wad = 100;
-    //     const success = await loan.approve.call(bob, wad, {from: alice});
-    //     assert.equal(success, true);
-    // })
+    it("Prepare new loan to fail", async function() {
+        loan2_address = await loanFactory.createLoan.call(
+            100,
+            "WEUR",
+            10,
+            "WXAG",
+            now + 30,
+            {from: alice}
+        );
+        loan2_txhash = await loanFactory.createLoan(
+            100,
+            "WEUR",
+            10,
+            "WXAG",
+            now + 30,
+            {from: alice}
+        );
+        accounts[0].account = loan2_address;
+        loan2 = Loan.at(loan2_address);
+        accounts[1].wxag -= 10;
+        accounts[0].wxag += 10;
 
-    // it("Bob transfers WEUR to Carol", async function () {
-    //     wad = 100;
-    //     initial_balance = await loan.balanceOf.call(carol, {from: bob});
-    //     const success = await loan.transferFrom.call(alice, carol, wad, {from: bob});
-    //     assert.equal(success, true);
-    //     new_balance = await loan.balanceOf.call(carol, {from: bob});
-    //     assert.equal(new_balance, initial_balance+wad);
-    // })
+        txhash = await loan2.matchLoan(5, {from: bob});
+        accounts[2].weur -= 100;    // Bob
+        accounts[0].weur += 100;    // Contract
+
+        txhash = await loan2.agree({from: alice});
+
+        // changes to accounts
+        accounts[0].weur -= 100;    // Contract
+        accounts[1].weur += 100;    // Alice
+        await checkAssets(accounts);
+
+        // move contract to an expired timestamp
+        await timeTravel(31);
+    })
+
+    it("Alice cannot pay back after deadline", async function() {
+        try {
+            txhash = await loan2.repay({from: alice});
+        } catch (err) {
+            error = err;
+        }
+        assert.notEqual(error, undefined, "Error must be thrown");
+        
+        // no changes to accounts
+        await checkAssets(accounts);
+
+        // state should be pending
+        const state = await loan2.state.call({from: alice});
+        assert.equal(state, States.Pending);
+    })
+
+    it("Bob collects collateral", async function() {
+        success = await loan2.collectCollateral.call({from: bob})
+        txhash = await loan2.collectCollateral({from: bob})
+        assert.equal(success, true);
+        
+        // changes to accounts
+        accounts[0].wxag -= 10;     // Contract
+        accounts[2].wxag += 10;     // Contract
+        await checkAssets(accounts);
+        
+        // state should be failure
+        const state = await loan2.state.call({from: alice});
+        assert.equal(state, States.Failure);
+    })
 
 });
